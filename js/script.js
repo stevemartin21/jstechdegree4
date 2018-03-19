@@ -39,6 +39,8 @@ var choices8 =document.querySelectorAll('.boxes li')[8];
 
 var arrayA =[];
 var arrayB =[]; 
+var squaresTaken =[]; 
+var tie = 0;
 
 // Set up a selector for depending on e.target and add number to array 
 
@@ -67,24 +69,28 @@ closeStart.addEventListener('click', function(){
 	// loop to run over li elements to add mouseover effect on li's and add background image
 
 	for (i=0; i<choices.length; i++){
-		choices[i].addEventListener('mouseover', function(e){
-			
-			if($(player1).hasClass('active') == true ){
-				console.log('Mouse Out')
 
-				e.target.style.backgroundImage = "url('img/o.svg')";
-			}
-			else if ($(player2).hasClass('active') == true){
-				e.target.style.backgroundImage = "url('img/x.svg')";
-			}		
-		});
+		if(choices[i].className !=='box-filled-1' || choices[i].className !=='box-filled-2'){
+
+			choices[i].addEventListener('mouseover', function(e){
+				
+				if($(player1).hasClass('active') == true ){
+					console.log('Mouse Out')
+
+					e.target.style.backgroundImage = "url('img/o.svg')";
+				}
+				else if ($(player2).hasClass('active') == true){
+					e.target.style.backgroundImage = "url('img/x.svg')";
+				}		
+			});
+		}
 	}
 
 	//mouse out function to return background image to nothing if selected
 
 
 	for (i=0; i<choices.length; i++){
-
+			if(choices[i].classList !=='box-filled-1' || choices[i].classList !=='box-filled-2'){
 		
 			choices[i].addEventListener('mouseout', function(e){
 			
@@ -96,6 +102,7 @@ closeStart.addEventListener('click', function(){
 				}
 			
 			});
+		}
 		
 	}
 
@@ -109,32 +116,54 @@ closeStart.addEventListener('click', function(){
 
 				if 	($(player1).hasClass('active')== true){
 						e.target.classList.add('box-filled-1');
+						e.target.setAttribute('disabled', true);
 						
 						// if the player seelcts one of the li's add the class and a numer is added to an array
 						
-						if (e.target== choices0 ){	
+						if (e.target== choices0 && squaresTaken.indexOf(0)===-1){	
 							arrayA.push(0);
+							squaresTaken.push(0);
+							console.log('Bob it is')
+							console.log(squaresTaken);
+							tie ++
 							}
 
 						else if(e.target== choices1){
 							arrayA.push(1);	
+							squaresTaken.push(1);
+							console.log(squaresTaken);
+							tie ++
 						}
 						else if(e.target== choices2){
 							arrayA.push(2);
+							squaresTaken.push(2);
+							tie ++
 						}
 						else if(e.target== choices3){
 							arrayA.push(3);
+							squaresTaken.push(3);
+							tie ++
 						}else if(e.target== choices4){
 							arrayA.push(4);
+							squaresTaken.push(4);
+							tie ++
 						}else if(e.target== choices5){
 							arrayA.push(5);
+							squaresTaken.push(5);
+							tie ++
 						}else if(e.target== choices6){
 							arrayA.push(6);
+							squaresTaken.push(6);
+							tie ++
 						}else if(e.target== choices7){
 							arrayA.push(7);
+							squaresTaken.push(7);
+							tie ++
 						}else if(e.target== choices8){
 							arrayA.push(8);
-							console.log('choices choices')
+							squaresTaken.push(8);
+							tie ++
+							
 						}
 					//After the player chooses something it switches to the next players turn	
 						player2.classList.add('active');
@@ -187,38 +216,65 @@ closeStart.addEventListener('click', function(){
 						message.innerHTML = 'Winner';
 						board.style.display='none';
 					}
+					else if(tie=== 9 ){
+						win.style.display='block';
+						win.classList.add('screen-win-tie');
+						message.innerHTML = 'Its a tie';
+						board.style.display='none';
+
+					}
 
 				}
+
 
 				else if($(player2).hasClass('active') == true){
 
 						e.target.classList.add('box-filled-2');
+						e.target.setAttribute('disabled', true);
 						
 						// Change the class name to the list  instead of disabled 
 						// if the player seelcts one of the li's add the class and a numer is added to an array
 						
 						if (e.target== choices0 ){
 							arrayB.push(10);
+							squaresTaken.push(10);
+							tie ++
 						}
 						else if(e.target== choices1){
-							arrayB.push(11);	
+							arrayB.push(11);
+							squaresTaken.push(11);	
+							tie ++
 						}
 						else if(e.target== choices2){
 							arrayB.push(12);
+							squaresTaken.push(12);
+							tie ++
 						}
 						else if(e.target== choices3){
 							arrayB.push(13);
+							squaresTaken.push(13);
+							tie ++
 						}else if(e.target== choices4){
 							arrayB.push(14);
+							squaresTaken.push(14);
+							tie ++
 						}else if(e.target== choices5){
 							arrayB.push(15);
+							squaresTaken.push(15);
+							tie ++
 						}else if(e.target== choices6){
 							arrayB.push(16);
+							squaresTaken.push(16);
+							tie ++
 						}else if(e.target== choices7){
 							arrayB.push(17);
+							squaresTaken.push(17);
+							tie ++
 						}else if(e.target== choices8){
 							arrayB.push(18);
-							console.log('choices choices')
+							squaresTaken.push(18);
+							tie ++
+							
 						}
 						//After the player chooses something it switches to the next players turn	
 						
@@ -269,81 +325,36 @@ closeStart.addEventListener('click', function(){
 						win.classList.add('screen-win-two');
 						message.innerHTML = 'Winner';
 						board.style.display='none';	
-					}
-
-			}
-
-			for (i=0; i<choices.length; i++){
-
-		
-				choices[i].addEventListener('mouseout', function(e){
-								
-						if($(player1).hasClass('box-filled-1') == true){
-							e.target.style.backgroundImage = "url('img/o.svg')";
-						}
-						else if ($(player2).hasClass('box-filled-2') == true){
-							e.target.style.backgroundImage = "url('img/x.svg')";
-						}
-			
-				});
-		
-			}
-
-			for (i=0; i<choices.length; i++){
-				choices[i].addEventListener('mouseover', function(e){
-			
-			if($(player1).hasClass('box-filled-1') == true){
-				e.target.style.backgroundImage = "url('img/o.svg')";
-			}
-			else if ($(player2).hasClass('box-filled-2') == true){
-				e.target.style.backgroundImage = "url('img/x.svg')";
-			}
-			
-		});
-	}
-
-
-/// This is the part I can't quite fiture out, how to add the tie screen 
-			
-		
-			/*
-				
+					}else if(tie=== 9 ){
 						win.style.display='block';
 						win.classList.add('screen-win-tie');
 						message.innerHTML = 'Its a tie';
 						board.style.display='none';
-				
-			
-		*/
-			
-					
-		});
+
+					}
+
+
+			}
 
 
 		
 
+	});
 
-	}
+}
 
-	
-			
-		///reload new game when the player clicks on new game
-		
-			
+});
+
+
+
+ 
 openFinish.addEventListener('click', function(){
 	
 	//win.style.display='none';
 	location.reload()
 	//start.style.display='block';
 	
-})
-
-
-
 });
-
- 
-
 	
 
 
