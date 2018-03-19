@@ -277,8 +277,7 @@ closeStart.addEventListener('click', function(){
 
 		
 				choices[i].addEventListener('mouseout', function(e){
-					console.log('it works')
-			
+								
 						if($(player1).hasClass('box-filled-1') == true){
 							e.target.style.backgroundImage = "url('img/o.svg')";
 						}
@@ -291,7 +290,7 @@ closeStart.addEventListener('click', function(){
 			}
 
 			for (i=0; i<choices.length; i++){
-		choices[i].addEventListener('mouseover', function(e){
+				choices[i].addEventListener('mouseover', function(e){
 			
 			if($(player1).hasClass('box-filled-1') == true){
 				e.target.style.backgroundImage = "url('img/o.svg')";
