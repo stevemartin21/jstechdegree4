@@ -39,8 +39,52 @@ var choices8 =document.querySelectorAll('.boxes li')[8];
 
 var arrayA =[];
 var arrayB =[]; 
-var squaresTaken =[]; 
+var squaresTaken =[0,1,2,3,4,5,6,7,8]; 
 var tie = 0;
+
+
+function addListener(){
+
+	if( squaresTaken.indexOf(0)> -1){
+		choices0.addEventListener('mouseover', function(e){
+			console.log('it worked')
+			if($(player1).hasClass('active') == true ){
+				e.target.style.backgroundImage = "url('img/o.svg')";
+			}else if ($(player2).hasClass('active') == true){
+				e.target.style.backgroundImage = "url('img/x.svg')";
+			}else {
+			console.log('it is not empty')
+			}
+	
+		})
+	}
+}
+
+addListener();
+
+
+function addListener2(){
+
+	if( squaresTaken.indexOf(0)> -1){
+		choices0.addEventListener('mouseout', function(e){
+			console.log('it worked')
+			if($(player1).hasClass('active') == true ){
+				e.target.style.backgroundImage = "url('')";
+			}else if ($(player2).hasClass('active') == true){
+				e.target.style.backgroundImage = "url('')";
+			}else {
+			console.log('it is not empty')
+			}
+	
+		})
+	}
+}
+
+addListener2();
+
+
+
+
 
 // Set up a selector for depending on e.target and add number to array 
 
@@ -66,45 +110,9 @@ closeStart.addEventListener('click', function(){
 		player2.classList.add('active');
 	}
 
+
+
 	// loop to run over li elements to add mouseover effect on li's and add background image
-
-	for (i=0; i<choices.length; i++){
-
-		if(choices[i].className !=='box-filled-1' || choices[i].className !=='box-filled-2'){
-
-			choices[i].addEventListener('mouseover', function(e){
-				
-				if($(player1).hasClass('active') == true ){
-					console.log('Mouse Out')
-
-					e.target.style.backgroundImage = "url('img/o.svg')";
-				}
-				else if ($(player2).hasClass('active') == true){
-					e.target.style.backgroundImage = "url('img/x.svg')";
-				}		
-			});
-		}
-	}
-
-	//mouse out function to return background image to nothing if selected
-
-
-	for (i=0; i<choices.length; i++){
-			if(choices[i].classList !=='box-filled-1' || choices[i].classList !=='box-filled-2'){
-		
-			choices[i].addEventListener('mouseout', function(e){
-			
-				if($(player1).hasClass('active') == true){
-					e.target.style.backgroundImage = "url('')";
-				}
-				else if ($(player2).hasClass('active') == true){
-					e.target.style.backgroundImage = "url('')";
-				}
-			
-			});
-		}
-		
-	}
 
 
 
@@ -120,48 +128,97 @@ closeStart.addEventListener('click', function(){
 						
 						// if the player seelcts one of the li's add the class and a numer is added to an array
 						
-						if (e.target== choices0 && squaresTaken.indexOf(0)===-1){	
+						if (e.target== choices0){	
 							arrayA.push(0);
-							squaresTaken.push(0);
-							console.log('Bob it is')
+							var i = squaresTaken.indexOf(0);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							addListener();
+							console.log('it worked again')
+							addListener2();
 							console.log(squaresTaken);
+
+
 							tie ++
 							}
 
 						else if(e.target== choices1){
 							arrayA.push(1);	
-							squaresTaken.push(1);
-							console.log(squaresTaken);
+							var i = squaresTaken.indexOf(1);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							//addListener();
+							//addListener2();
+							
+							
 							tie ++
 						}
 						else if(e.target== choices2){
 							arrayA.push(2);
-							squaresTaken.push(2);
+							var i = squaresTaken.indexOf(2);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}
 						else if(e.target== choices3){
 							arrayA.push(3);
-							squaresTaken.push(3);
+							var i = squaresTaken.indexOf(3);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices4){
 							arrayA.push(4);
-							squaresTaken.push(4);
+							var i = squaresTaken.indexOf(4);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+						
+							
 							tie ++
 						}else if(e.target== choices5){
 							arrayA.push(5);
-							squaresTaken.push(5);
+							var i = squaresTaken.indexOf(5);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices6){
 							arrayA.push(6);
-							squaresTaken.push(6);
+							var i = squaresTaken.indexOf(6);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices7){
 							arrayA.push(7);
-							squaresTaken.push(7);
+							var i = squaresTaken.indexOf(7);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices8){
 							arrayA.push(8);
-							squaresTaken.push(8);
+							var i = squaresTaken.indexOf(8);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 							
 						}
@@ -230,49 +287,94 @@ closeStart.addEventListener('click', function(){
 				else if($(player2).hasClass('active') == true){
 
 						e.target.classList.add('box-filled-2');
-						e.target.setAttribute('disabled', true);
+						//e.target.setAttribute('disabled', true);
 						
 						// Change the class name to the list  instead of disabled 
 						// if the player seelcts one of the li's add the class and a numer is added to an array
 						
 						if (e.target== choices0 ){
 							arrayB.push(10);
-							squaresTaken.push(10);
+							var i = squaresTaken.indexOf(0);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
+							
 							tie ++
 						}
 						else if(e.target== choices1){
 							arrayB.push(11);
-							squaresTaken.push(11);	
+							var i = squaresTaken.indexOf(1);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+								
 							tie ++
 						}
 						else if(e.target== choices2){
 							arrayB.push(12);
-							squaresTaken.push(12);
+							var i = squaresTaken.indexOf(2);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
 							tie ++
 						}
 						else if(e.target== choices3){
 							arrayB.push(13);
-							squaresTaken.push(13);
+							var i = squaresTaken.indexOf(3);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices4){
 							arrayB.push(14);
-							squaresTaken.push(14);
+							var i = squaresTaken.indexOf(4);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices5){
 							arrayB.push(15);
-							squaresTaken.push(15);
+							var i = squaresTaken.indexOf(5);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 						}else if(e.target== choices6){
 							arrayB.push(16);
-							squaresTaken.push(16);
+							var i = squaresTaken.indexOf(6);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+						
+							
 							tie ++
 						}else if(e.target== choices7){
 							arrayB.push(17);
-							squaresTaken.push(17);
+							var i = squaresTaken.indexOf(7);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+						
+							
 							tie ++
 						}else if(e.target== choices8){
 							arrayB.push(18);
-							squaresTaken.push(18);
+							var i = squaresTaken.indexOf(8);
+							if(i != -1) {
+								squaresTaken.splice(i, 1);
+							}
+							
+							
 							tie ++
 							
 						}
@@ -335,9 +437,8 @@ closeStart.addEventListener('click', function(){
 
 
 			}
-
-
-		
+			
+	
 
 	});
 
