@@ -46,45 +46,48 @@ var tie = 0;
 function addListener(){
 
 	if( squaresTaken.indexOf(0)> -1){
-		choices0.addEventListener('mouseover', function(e){
-			console.log('it worked')
-			if($(player1).hasClass('active') == true ){
-				e.target.style.backgroundImage = "url('img/o.svg')";
-			}else if ($(player2).hasClass('active') == true){
-				e.target.style.backgroundImage = "url('img/x.svg')";
-			}else {
-			console.log('it is not empty')
-			}
+		for(i=0; i<choices.length; i++){
+			$(choices[i]).on('mouseover', function(e){
+				
+				if($(player1).hasClass('active') == true ){
+					e.target.style.backgroundImage = "url('img/o.svg')";
+				}else if ($(player2).hasClass('active') == true){
+					e.target.style.backgroundImage = "url('img/x.svg')";
+				}else {
+				console.log('it is not empty')
+				}
 	
-		})
+		}	)
 	}
+	}
+	
 }
 
 addListener();
 
 
+
 function addListener2(){
 
 	if( squaresTaken.indexOf(0)> -1){
-		choices0.addEventListener('mouseout', function(e){
-			console.log('it worked')
-			if($(player1).hasClass('active') == true ){
-				e.target.style.backgroundImage = "url('')";
-			}else if ($(player2).hasClass('active') == true){
-				e.target.style.backgroundImage = "url('')";
-			}else {
-			console.log('it is not empty')
-			}
+		for(i=0; i<choices.length; i++){
+			$(choices[i]).on('mouseout', function(e){
+				
+				if($(player1).hasClass('active') == true ){
+					e.target.style.backgroundImage = "url('')";
+				}else if ($(player2).hasClass('active') == true){
+					e.target.style.backgroundImage = "url('')";
+				}else {
+				console.log('it is not empty')
+				}
 	
-		})
+		}	)
 	}
+	}
+	
 }
 
 addListener2();
-
-
-
-
 
 // Set up a selector for depending on e.target and add number to array 
 
@@ -110,13 +113,7 @@ closeStart.addEventListener('click', function(){
 		player2.classList.add('active');
 	}
 
-
-
 	// loop to run over li elements to add mouseover effect on li's and add background image
-
-
-
-
 	////////////////////////
 
 	for (i=0; i<choices.length; i++){
@@ -124,7 +121,7 @@ closeStart.addEventListener('click', function(){
 
 				if 	($(player1).hasClass('active')== true){
 						e.target.classList.add('box-filled-1');
-						e.target.setAttribute('disabled', true);
+						
 						
 						// if the player seelcts one of the li's add the class and a numer is added to an array
 						
@@ -135,12 +132,10 @@ closeStart.addEventListener('click', function(){
 								squaresTaken.splice(i, 1);
 							}
 							
-							addListener();
-							console.log('it worked again')
-							addListener2();
-							console.log(squaresTaken);
-
-
+							$(choices0).off();
+							
+							
+							//addListener()
 							tie ++
 							}
 
@@ -150,8 +145,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							//addListener();
-							//addListener2();
+							$(choices1).off();
 							
 							
 							tie ++
@@ -162,7 +156,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices2).off();
 							
 							tie ++
 						}
@@ -172,7 +166,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices3).off();
 							
 							tie ++
 						}else if(e.target== choices4){
@@ -181,7 +175,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-						
+							$(choices4).off();
 							
 							tie ++
 						}else if(e.target== choices5){
@@ -190,7 +184,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices5).off();
 							
 							tie ++
 						}else if(e.target== choices6){
@@ -199,7 +193,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices6).off();
 							
 							tie ++
 						}else if(e.target== choices7){
@@ -208,7 +202,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices7).off();
 							
 							tie ++
 						}else if(e.target== choices8){
@@ -217,7 +211,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices8).off();
 							
 							tie ++
 							
@@ -298,7 +292,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices0).off();
 							
 							
 							tie ++
@@ -309,7 +303,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices1).off();
 								
 							tie ++
 						}
@@ -319,7 +313,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices2).off();
 							tie ++
 						}
 						else if(e.target== choices3){
@@ -328,7 +322,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices3).off();
 							
 							tie ++
 						}else if(e.target== choices4){
@@ -337,7 +331,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices4).off();
 							
 							tie ++
 						}else if(e.target== choices5){
@@ -346,7 +340,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices5).off();
 							
 							tie ++
 						}else if(e.target== choices6){
@@ -355,7 +349,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-						
+							$(choices6).off();
 							
 							tie ++
 						}else if(e.target== choices7){
@@ -364,7 +358,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-						
+							$(choices7).off();
 							
 							tie ++
 						}else if(e.target== choices8){
@@ -373,7 +367,7 @@ closeStart.addEventListener('click', function(){
 							if(i != -1) {
 								squaresTaken.splice(i, 1);
 							}
-							
+							$(choices8).off();
 							
 							tie ++
 							
@@ -434,19 +428,12 @@ closeStart.addEventListener('click', function(){
 						board.style.display='none';
 
 					}
-
-
 			}
-			
-	
-
 	});
 
 }
 
 });
-
-
 
  
 openFinish.addEventListener('click', function(){
