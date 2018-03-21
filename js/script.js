@@ -117,13 +117,13 @@ closeStart.addEventListener('click', function(){
 	////////////////////////
 
 	for (i=0; i<choices.length; i++){
-			choices[i].addEventListener('click', function(e){
+			$(choices[i]).on('click', function(e){
 
 				if 	($(player1).hasClass('active')== true){
 						e.target.classList.add('box-filled-1');
 						
 						
-						// if the player seelcts one of the li's add the class and a numer is added to an array
+						// if the player seelcts one of the li's add the class and a number is added to an array
 						
 						if (e.target== choices0){	
 							arrayA.push(0);
@@ -135,8 +135,9 @@ closeStart.addEventListener('click', function(){
 							$(choices0).off();
 							
 							
-							//addListener()
 							tie ++
+							//addListener()
+							
 							}
 
 						else if(e.target== choices1){
@@ -293,6 +294,7 @@ closeStart.addEventListener('click', function(){
 								squaresTaken.splice(i, 1);
 							}
 							$(choices0).off();
+
 							
 							
 							tie ++
@@ -436,13 +438,14 @@ closeStart.addEventListener('click', function(){
 });
 
  
-openFinish.addEventListener('click', function(){
+setTimeout(openFinish.addEventListener('click', function(){
 	
+
 	//win.style.display='none';
-	location.reload()
-	//start.style.display='block';
+	location.assign('index.html');
 	
-});
+	
+}), 2000);
 	
 
 
